@@ -21,7 +21,7 @@ public class JobInterfaces {
     private QuartzJobService quartzJobService;
 
 
-    //假如 这个定时任务的 名字叫做 hello world, 组名TEST ONE
+    //假如 这个定时任务的 名字叫做HelloWorld, 组名GroupOne
     private final JobKey jobKey = JobKey.jobKey("HelloWorld", "GroupOne");
 
 
