@@ -40,7 +40,7 @@ public class JobInterfaces {
                 .build();
 
         quartzJobService.scheduleJob(task);
-        return "startHelloWorldJob success";
+        return "start HelloWorld Job success";
     }
 
     /**
@@ -49,7 +49,7 @@ public class JobInterfaces {
     @GetMapping("/pauseHelloWorldJob")
     public String pauseHelloWorldJob() throws SchedulerException {
         quartzJobService.pauseJob(jobKey);
-        return "pauseHelloWorldJob success";
+        return "pause HelloWorld Job success";
     }
 
 
@@ -59,7 +59,7 @@ public class JobInterfaces {
     @GetMapping("/resumeHelloWorldJob")
     public String resumeHelloWorldJob() throws SchedulerException {
         quartzJobService.resumeJob(jobKey);
-        return "resumeHelloWorldJob success";
+        return "resume HelloWorld Job success";
     }
 
     /**
@@ -68,7 +68,7 @@ public class JobInterfaces {
     @GetMapping("/deleteHelloWorldJob")
     public String deleteHelloWorldJob() throws SchedulerException {
         quartzJobService.deleteJob(jobKey);
-        return "deleteHelloWorldJob success";
+        return "delete HelloWorld Job success";
     }
 
     /**
@@ -85,8 +85,8 @@ public class JobInterfaces {
                 .description("这是一个测试的 任务")    //定时任务 的描述
                 .build();
         if (quartzJobService.modifyJobCron(modifyCronTask))
-            return "modifyHelloWorldJobCron success";
-        else return "modifyHelloWorldJobCron fail";
+            return "modify HelloWorld Job Cron success";
+        else return "modify HelloWorld Job Cron fail";
     }
 
 
