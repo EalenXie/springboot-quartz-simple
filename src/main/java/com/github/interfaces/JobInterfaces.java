@@ -1,8 +1,8 @@
-package name.ealen.interfaces;
+package com.github.interfaces;
 
-import name.ealen.domain.entity.TaskDefine;
-import name.ealen.domain.execute.SayHelloJobLogic;
-import name.ealen.domain.service.QuartzJobService;
+import com.github.domain.entity.TaskDefine;
+import com.github.domain.execute.SayHelloJobLogic;
+import com.github.domain.service.QuartzJobService;
 import org.quartz.JobKey;
 import org.quartz.SchedulerException;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,7 +24,6 @@ public class JobInterfaces {
     //假如 这个定时任务的 名字叫做HelloWorld, 组名GroupOne
     private final JobKey jobKey = JobKey.jobKey("HelloWorld", "GroupOne");
 
-
     /**
      * 启动 hello world
      */
@@ -32,13 +31,12 @@ public class JobInterfaces {
     public String startHelloWorldJob() throws SchedulerException {
 
         //创建一个定时任务
-        TaskDefine task = TaskDefine.builder()
-                .jobKey(jobKey)
-                .cronExpression("0/2 * * * * ? ")   //定时任务 的cron表达式
-                .jobClass(SayHelloJobLogic.class)   //定时任务 的具体执行逻辑
-                .description("这是一个测试的 任务")    //定时任务 的描述
-                .build();
-
+        TaskDefine task = new TaskDefine(jobKey,
+                "这是一个测试的 任务",       //定时任务 的描述
+                "0/2 * * * * ? ",           //定时任务 的cron表达式
+                null,
+                SayHelloJobLogic.class //定时任务 的具体执行逻辑
+        );
         quartzJobService.scheduleJob(task);
         return "start HelloWorld Job success";
     }
@@ -76,15 +74,14 @@ public class JobInterfaces {
      */
     @GetMapping("/modifyHelloWorldJobCron")
     public String modifyHelloWorldJobCron() {
-
         //这是即将要修改cron的定时任务
-        TaskDefine modifyCronTask = TaskDefine.builder()
-                .jobKey(jobKey)
-                .cronExpression("0/5 * * * * ? ")   //定时任务 的cron表达式
-                .jobClass(SayHelloJobLogic.class)   //定时任务 的具体执行逻辑
-                .description("这是一个测试的 任务")    //定时任务 的描述
-                .build();
-        if (quartzJobService.modifyJobCron(modifyCronTask))
+        TaskDefine task = new TaskDefine(jobKey,
+                "这是一个测试的 任务",  //定时任务 的描述
+                "0/5 * * * * ? ", //定时任务 的cron表达式
+                null,
+                SayHelloJobLogic.class //定时任务 的具体执行逻辑
+        );
+        if (quartzJobService.modifyJobCron(task))
             return "modify HelloWorld Job Cron success";
         else return "modify HelloWorld Job Cron fail";
     }

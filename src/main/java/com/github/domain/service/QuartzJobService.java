@@ -1,8 +1,9 @@
-package name.ealen.domain.service;
+package com.github.domain.service;
 
-import lombok.extern.slf4j.Slf4j;
-import name.ealen.domain.entity.TaskDefine;
+import com.github.domain.entity.TaskDefine;
 import org.quartz.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.quartz.SchedulerFactoryBean;
 import org.springframework.stereotype.Service;
@@ -14,12 +15,14 @@ import java.util.Map;
  * 核心其实就是Scheduler的功能 , 这里只是非常简单的示例说明其功能
  * 如需根据自身业务进行扩展 请参考 {@link org.quartz.Scheduler}
  */
-@Slf4j
+
 @Service
 public class QuartzJobService {
 
+    private static final Logger log = LoggerFactory.getLogger(QuartzJobService.class);
+
     //Quartz定时任务核心的功能实现类
-    private Scheduler scheduler;
+    private final Scheduler scheduler;
 
     public QuartzJobService(@Autowired SchedulerFactoryBean schedulerFactoryBean) {
         scheduler = schedulerFactoryBean.getScheduler();

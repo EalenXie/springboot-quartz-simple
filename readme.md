@@ -22,11 +22,4 @@ SpringBoot整合Quartz简单完整例子
    
    5. 访问localhost:8080/modifyHelloWorldJobCron 修改这个HelloWorld 的定时任务,修改之后,每隔5秒打印 "hello world"
 
-#### 3. 在你启动该应用之前: 
-    
-   1. 请自行修改数据库配置: /application.yml  
-
-   2. 请准备Quartz的元数据表 : quartz_innodb.sql
-        
-        
     

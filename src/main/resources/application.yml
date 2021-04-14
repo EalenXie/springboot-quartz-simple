@@ -1,14 +1,9 @@
 spring:
   application:
     name: springboot-quartz-simple
-  datasource:
-    url: jdbc:mysql://localhost:3306/yourdatabase?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf-8&useSSL=true
-    username: yourname
-    password: yourpass
-    driver-class-name: com.mysql.cj.jdbc.Driver
 
+  # quartz 相关属性配置
   quartz:
-    # quartz 相关属性配置
     properties:
       org:
         quartz:
@@ -29,7 +24,3 @@ spring:
             threadsInheritContextClassLoaderOfInitializingThread: true
     #数据库方式
     job-store-type: jdbc
-
-  jpa:
-    open-in-view: false
-    show-sql: false

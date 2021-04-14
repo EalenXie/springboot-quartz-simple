@@ -1,4 +1,4 @@
-package name.ealen;
+package com.github;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

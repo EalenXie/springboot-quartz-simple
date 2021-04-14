@@ -1,10 +1,11 @@
-package name.ealen.domain.execute;
+package com.github.domain.execute;
 
-import lombok.extern.slf4j.Slf4j;
 import org.quartz.DisallowConcurrentExecution;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Created by EalenXie on 2019/7/10 15:30.
@@ -12,10 +13,9 @@ import org.quartz.JobExecutionException;
  * Job 是 定时任务的具体执行逻辑
  * JobDetail 是 定时任务的定义
  */
-@Slf4j
 @DisallowConcurrentExecution
 public class SayHelloJobLogic implements Job {
-
+    private static final Logger log = LoggerFactory.getLogger(SayHelloJobLogic.class);
 
     @Override
     public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
