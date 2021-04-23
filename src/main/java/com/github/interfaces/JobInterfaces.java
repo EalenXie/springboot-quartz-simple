@@ -27,7 +27,7 @@ public class JobInterfaces {
     /**
      * 启动 hello world
      */
-    @GetMapping("/startHelloWorldJob")
+    @GetMapping("/start")
     public String startHelloWorldJob() throws SchedulerException {
 
         //创建一个定时任务
@@ -44,7 +44,7 @@ public class JobInterfaces {
     /**
      * 暂停 hello world
      */
-    @GetMapping("/pauseHelloWorldJob")
+    @GetMapping("/pause")
     public String pauseHelloWorldJob() throws SchedulerException {
         quartzJobService.pauseJob(jobKey);
         return "pause HelloWorld Job success";
@@ -54,7 +54,7 @@ public class JobInterfaces {
     /**
      * 恢复 hello world
      */
-    @GetMapping("/resumeHelloWorldJob")
+    @GetMapping("/resume")
     public String resumeHelloWorldJob() throws SchedulerException {
         quartzJobService.resumeJob(jobKey);
         return "resume HelloWorld Job success";
@@ -63,7 +63,7 @@ public class JobInterfaces {
     /**
      * 删除 hello world
      */
-    @GetMapping("/deleteHelloWorldJob")
+    @GetMapping("/delete")
     public String deleteHelloWorldJob() throws SchedulerException {
         quartzJobService.deleteJob(jobKey);
         return "delete HelloWorld Job success";
@@ -72,7 +72,7 @@ public class JobInterfaces {
     /**
      * 修改 hello world 的cron表达式
      */
-    @GetMapping("/modifyHelloWorldJobCron")
+    @GetMapping("/modifyCron")
     public String modifyHelloWorldJobCron() {
         //这是即将要修改cron的定时任务
         TaskDefine task = new TaskDefine(jobKey,
